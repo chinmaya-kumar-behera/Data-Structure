@@ -62,7 +62,6 @@ class LinkedList:
         
         current = self.head
         for _ in range(index):
-            
             prev = current
             current = current.next
 
@@ -71,8 +70,42 @@ class LinkedList:
 
         prev.next = newNode
         newNode.next = current
-
         
+    def deleteNode(self,index):
+        if self.head is None:
+            print("no nodes are there to delete")
+            return
+    
+        if index == 0:
+            self.head = self.head.next
+            return
+        
+        current = self.head
+        prev = None
+
+        for _ in range(index):
+            prev = current
+            current = current.next
+        
+        prev.next = current.next
+
+    def findIndex(self,target):
+        print("find index called")
+
+        current = self.head
+
+        index = 0
+        while current:
+            index += 1
+            if current.value == target:
+                return index
+            current = current.next
+        
+        return -1
+
+
+
+
 obj = LinkedList()
 obj.append(10)
 obj.append(20)
@@ -80,6 +113,13 @@ obj.append(30)
 # obj.display()
 # obj.reverse() 
 obj.insertPosition(10,50)
-obj.insertPosition(0,100)
+obj.insertPosition(1,100)
+# obj.display()
+obj.deleteNode(3)
+print("after delete")
 obj.display()
+print("----------")
+obj.display()
+print(obj.findIndex(50))
+
 
